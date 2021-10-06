@@ -1,0 +1,55 @@
+<%- include("./partials/header") %>
+    <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+        <form action="/">
+            <button class="btn btn-warning">Back to Home</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">CheckIn Time</th>
+                    <th scope="col">CheckOut Time</th>
+                    <th scope="col">Available inside?</th>
+                    <th scope="col">choose??</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%let ctr=1%>
+                    <% for(let item of data) {%>
+                        <tr>
+                            <th scope="row">
+                                <%=ctr%>
+                            </th>
+                            <td>
+                                <%=item.name%>
+                            </td>
+                            <td>
+                                <%=item.email%>
+                            </td>
+                            <td>
+                                <%=item.phone%>
+                            </td>
+                            <td>
+                                <%=item.entryTime%>
+                            </td>
+                            <td>
+                                <%=item.exitTime%>
+                            </td>
+                            <td>
+                                <%=item.isAvailable%>
+                            </td>
+                            <td>
+                                <form action="/user/checkout/<%=item._id%>?_method=PATCH" method="POST">
+                                    <button class="btn btn-success btn-sm">CheckOut</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <%ctr++%>
+                            <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%- include("./partials/footer") %>
